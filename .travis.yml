@@ -17,11 +17,13 @@ addons:
             - gcc-9
             - cmake
             - cmake-data
+            - valgrind
 
 before_script:
     - echo "before script"
     - gcc --version
     - gcc-9 --version
+    - valgrind --version
     
 script: 
     - CC=gcc-9 cmake -H. -Bbuild
