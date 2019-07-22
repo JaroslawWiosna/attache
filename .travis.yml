@@ -1,0 +1,33 @@
+
+dist: trusty
+sudo: required
+
+language: c
+
+compiler:
+    - gcc
+#    - clang
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+            - george-edison55-precise-backports
+        packages:
+            - gcc
+            - cmake
+            - cmake-data
+
+before_script:
+    - echo "before script"
+    
+script: 
+    - cmake -H. -Bbuild
+    - (cd build/ && cmake --build .)
+
+after_success:
+    - cd build
+    - ./attache-test
+    - valgrind ./attache-test
+    - valgrind --leak-check=full -v --track-origins=yes ./attache-test
+
