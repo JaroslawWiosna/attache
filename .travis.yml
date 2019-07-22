@@ -24,8 +24,8 @@ before_script:
     - gcc-9 --version
     
 script: 
-    - cmake -H. -Bbuild
-    - (cd build/ && cmake --build .)
+    - CC=gcc-9 cmake -H. -Bbuild
+    - (cd build/ && CC=gcc-9 cmake --build .)
 
 after_success:
     - cd build
