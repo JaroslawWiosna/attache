@@ -20,6 +20,8 @@ addons:
 
 before_script:
     - echo "before script"
+    - gcc --version
+    - gcc-9 --version
     
 script: 
     - cmake -H. -Bbuild
