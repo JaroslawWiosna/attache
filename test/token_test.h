@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+// TODO: make compare function return meaningful value
+// In fact this is just to test snitch tool
 void compare(char * a, char * b) {
     if (0 == strcmp(a, b)) {
         printf("[ OK ]\n"); 
