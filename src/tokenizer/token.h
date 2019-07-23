@@ -1,3 +1,6 @@
+#ifndef TOKEN_H
+#define TOKEN_H
+
 typedef struct Token Token;
 
 struct Token {
@@ -14,3 +17,5 @@ Token * create_token_list(const char * text);
 
 void dctor_token_list(Token * token);
 void dctor_token(Token * token);
+
+#endif // TOKEN_H

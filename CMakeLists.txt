@@ -17,6 +17,7 @@ project(${PROJECT_NAME})
 set (SOURCES
     src/main.c
     src/tokenizer/token.c
+    src/log.c
 )
 
 add_executable(${PROJECT_NAME}
@@ -30,6 +31,7 @@ project(${PROJECT_NAME}-test)
 set (SOURCES-TEST
     test/main.c
     src/tokenizer/token.c
+    src/log.c
 )
 
 add_executable(${PROJECT_NAME}
