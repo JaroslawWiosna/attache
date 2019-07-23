@@ -1,5 +1,5 @@
 [![Licence](https://img.shields.io/github/license/JaroslawWiosna/attache.svg)](https://github.com/JaroslawWiosna/attache/blob/master/LICENSE)
-<!--- TODO: Uncomment Release badge once attache has its first release -->
+<!--- TODO(#13): Uncomment Release badge once attache has its first release -->
 <!--- [![Release](https://img.shields.io/github/release/JaroslawWiosna/attache.svg?maxAge=3600)](https://github.com/JaroslawWiosna/attache/releases) -->
 [![GitHub contributors](https://img.shields.io/github/contributors/JaroslawWiosna/attache.svg)](https://github.com/JaroslawWiosna/attache/graphs/contributors)
 [![Pull Requests](https://img.shields.io/github/issues-pr/JaroslawWiosna/attache.svg)](https://github.com/JaroslawWiosna/attache/pulls)
