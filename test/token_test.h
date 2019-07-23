@@ -16,20 +16,19 @@ void compare(char * a, char * b) {
 int token_test_01() {
     const char * text = "foo bar";
 
-    struct Token *token = next_token(text);
+    struct Token *token = create_token_list(text);
     compare(token->value, "foo");
     compare(token->the_rest_of_text, "bar");
 
-    struct Token *token02 = next_token(token->the_rest_of_text);
-    compare(token02->value, "bar");
-    compare(token02->the_rest_of_text, "");
+    token = next_token(token);
+    compare(token->value, "bar");
 
-    free(token02->value);
-    free(token02->the_rest_of_text);
-    free(token02);
-    free(token->value);
-    free(token->the_rest_of_text);
-    free(token);
+    if (token->the_rest_of_text == NULL)
+        compare("true", "true");
+    else
+        compare("true", "false");
+
+    dctor_token_list(token);
 
     return 0;
 }
@@ -37,20 +36,16 @@ int token_test_01() {
 int token_test_02() {
     const char * text = "foo bar baz";
 
-    struct Token *token = next_token(text);
+    struct Token *token = create_token_list(text);
     compare(token->value, "foo");
     compare(token->the_rest_of_text, "bar baz");
 
-    struct Token *token02 = next_token(token->the_rest_of_text);
-    compare(token02->value, "bar");
-    compare(token02->the_rest_of_text, "baz");
+    token = next_token(token);
 
-    free(token02->value);
-    free(token02->the_rest_of_text);
-    free(token02);
-    free(token->value);
-    free(token->the_rest_of_text);
-    free(token);
+    compare(token->value, "bar");
+    compare(token->the_rest_of_text, "baz");
+
+    dctor_token_list(token);
 
     return 0;
 }
@@ -58,20 +53,15 @@ int token_test_02() {
 int token_test_03() {
     const char * text = "This is test string. We want to split on spaces";
 
-    struct Token *token = next_token(text);
+    struct Token *token = create_token_list(text);
     compare(token->value, "This");
     compare(token->the_rest_of_text, "is test string. We want to split on spaces");
 
-    struct Token *token02 = next_token(token->the_rest_of_text);
-    compare(token02->value, "is");
-    compare(token02->the_rest_of_text, "test string. We want to split on spaces");
+    token = next_token(token);
+    compare(token->value, "is");
+    compare(token->the_rest_of_text, "test string. We want to split on spaces");
 
-    free(token02->value);
-    free(token02->the_rest_of_text);
-    free(token02);
-    free(token->value);
-    free(token->the_rest_of_text);
-    free(token);
+    dctor_token_list(token);
 
     return 0;
 }

@@ -6,6 +6,7 @@ set(CMAKE_C_FLAGS
     "${CMAKE_C_FLAGS} \
     -Wall \
     -Werror \
+    -g \
     -std=c99"
 )
 
