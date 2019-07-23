@@ -1,7 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
-// TODO: Let's make loglevels
+// TODO(#16): Let's make loglevels
 
 void my_log(const char * text);
 
