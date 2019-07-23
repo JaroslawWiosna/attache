@@ -125,7 +125,7 @@ void dctor_token_list(Token * token) {
     return;
 }
 
-// TODO make dctor_token static, so it won't be visible outside of translation unit
+// TODO(#10): make dctor_token static, so it won't be visible outside of translation unit
 //      Only dctor_token_list should be used.
 void dctor_token(Token * token) {
     if (NULL != token->value) {
