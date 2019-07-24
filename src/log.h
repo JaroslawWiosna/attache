@@ -14,7 +14,6 @@
 #define LOGE(text) LOG(LEVEL_ERROR, text)
 #define LOGW(text) LOG(LEVEL_WARN, text)
 
-// TODO(#17): Filepath in logging is too long. Use filename instead
 void my_log(int level, const char * filename, int line, const char * function, const char * text);
 
 #endif // LOG_H
