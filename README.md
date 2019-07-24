@@ -8,3 +8,17 @@
 # attache [![Watchers](https://img.shields.io/github/watchers/JaroslawWiosna/attache.svg?style=social&label=Watch)](https://github.com/JaroslawWiosna/attache/watchers) [![Star](https://img.shields.io/github/stars/JaroslawWiosna/attache.svg?style=social&label=Stars)](https://github.com/JaroslawWiosna/attache/stargazers) [![Fork](https://img.shields.io/github/forks/JaroslawWiosna/attache.svg?style=social&label=Fork)](https://github.com/JaroslawWiosna/attache/network)
 
 > Your personal diplomacy manager
+
+## man page
+
+<!--- TODO: man page is not installed with RPM -->
+<!--- TODO: syntax of man page is not being checked in CI -->
+<!--- TODO: man page has release 0.0, but the project has no release yet -->
+
+Issue 
+
+```bash
+man ./man-attache.txt
+```
+
+in order to read man page for this project.
