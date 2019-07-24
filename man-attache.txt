@@ -1,0 +1,17 @@
+.\" Manpage for attache.
+.\" Contact jaroslaw.wiosna.github@gmail.com to correct errors or typos.
+.TH attache 1 "24 Jul 2019" "0.0" "attache man page"
+.SH NAME
+attache \- Your personal diplomacy manager
+.SH SYNOPSIS
+attache [...]
+.SH DESCRIPTION
+attache --- It is hard to describe at the moment...
+.SH OPTIONS
+The attache does not take any options. For now.
+.SH SEE ALSO
+man(1) 
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Jarosław Wiosna (jaroslaw.wiosna.github@gmail.com)
