@@ -11,7 +11,7 @@
 
 ## man page
 
-<!--- TODO: man page is not installed with RPM -->
+<!--- TODO(#21): man page is not installed with RPM -->
 <!--- TODO: syntax of man page is not being checked in CI -->
 <!--- TODO: man page has release 0.0, but the project has no release yet -->
 
