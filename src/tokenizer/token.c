@@ -14,8 +14,9 @@ Token * next_token(Token * token) {
 Token * create_next_token(Token * token) {
     printf("[LOG] create_next_token\n");
     // printf("Len of %s is %u\n", token->value, (unsigned int)strlen(token->value));
-    char * text = malloc(strlen(token->the_rest_of_text) * sizeof(char));
-    strncpy(text, token->the_rest_of_text, strlen(token->the_rest_of_text));
+    char * text = malloc(strlen(token->the_rest_of_text) + 1);
+    strncpy(text, token->the_rest_of_text, strlen(token->the_rest_of_text) + 1);
+    text[strlen(token->the_rest_of_text)] = '\0';
 
     printf("Len of %s is %u\n", text, (unsigned int)strlen(text));
     if (!text || 0 == strcmp(text, "")) {
@@ -29,11 +30,11 @@ Token * create_next_token(Token * token) {
 
     for (int i=0; i<strlen(text); ++i) {
         if (' ' == *(text+i)) {
-            result->value = malloc((i+1) * sizeof(char));
-            strncpy(result->value, text, i);
+            result->value = malloc(i+1);
+            strncpy(result->value, text, i+1);
             result->value[i] = '\0';
 
-            result->the_rest_of_text = malloc((strlen(text) + 1 - i) * sizeof(char));
+            result->the_rest_of_text = malloc(strlen(text) + 1 - i);
             memcpy(result->the_rest_of_text, &text[i+1], (strlen(text) + 1 - i - 1));
             result->the_rest_of_text[(strlen(text) - i - 1)] = '\0';
             
@@ -47,11 +48,12 @@ Token * create_next_token(Token * token) {
             return result;
         }
     }
-    result->value = malloc((strlen(text)) * sizeof(char));
-    printf("[LOG] text is %s\n", text);
-    printf("[LOG] result->value is %s\n", result->value);
-    strncpy(result->value, text, strlen(text));
-    printf("[LOG] result->value is %s\n", result->value);
+    result->value = malloc(strlen(text) + 1);
+    // printf("[LOG] text is %s\n", text);
+    // printf("[LOG] result->value is %s\n", result->value);
+    strncpy(result->value, text, strlen(text) + 1);
+    result->value[strlen(text)] = '\0';
+    // printf("[LOG] result->value is %s\n", result->value);
 
     result->the_rest_of_text = NULL;
     result->next = NULL;
@@ -72,13 +74,13 @@ Token * create_token_list(const char * text) {
 
     for (int i=0; i<strlen(text); ++i) {
         if (' ' == *(text+i)) {
-            result->value = malloc((i+1) * sizeof(char));
+            result->value = malloc(i+1);
             strncpy(result->value, text, i);
             result->value[i] = '\0';
 
-            result->the_rest_of_text = malloc((strlen(text) + 1 - i) * sizeof(char));
-            memcpy(result->the_rest_of_text, &text[i+1], (strlen(text) + 1 - i - 1));
-            result->the_rest_of_text[(strlen(text) - i - 1)] = '\0';
+            result->the_rest_of_text = malloc(strlen(text) + 1 - i);
+            memcpy(result->the_rest_of_text, &text[i+1], (strlen(text) + 1 - i));
+            result->the_rest_of_text[(strlen(text) - i)] = '\0';
             result->prev = NULL;
             result->next = create_next_token(result);
             printf("[DEBUG] addr of result is %p\n", result);
@@ -86,11 +88,13 @@ Token * create_token_list(const char * text) {
             return result;
         }
     }
-    result->value = malloc((strlen(text) + 1) * sizeof(char));
-    strncpy(result->value, text, strlen(text));
+    result->value = malloc(strlen(text) + 1);
+    strncpy(result->value, text, strlen(text) + 1);
+    result->value[strlen(text)] = '\0';
 
-    result->the_rest_of_text = malloc(1 * sizeof(char));
-    strncpy(result->value, "", strlen(""));
+    result->the_rest_of_text = malloc(1);
+    strncpy(result->the_rest_of_text, "", strlen(""));
+    result->the_rest_of_text[0] = '\0';
 
     printf("value is %s\n", result->value);
     result->next = create_next_token(result);
