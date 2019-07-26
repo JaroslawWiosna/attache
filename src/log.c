@@ -28,10 +28,18 @@ void my_log(LOG_LEVEL level, const char * filename, int line, const char * funct
     if (level > highestThreshold(logThresholds)) {
         return;
     }
+    char buffer[256];
+    sprintf(buffer, "%s %s:%d (%s) %s\n", log_level_description(level), filename, line, function, text);
     if (level <= logThresholds.console_threshold) {
-        printf("%s %s:%d (%s) %s\n", log_level_description(level), filename, line, function, text);
+        printf(buffer);
     }
     if (level <= logThresholds.logfile_threshold) {
-    // TODO(#28): append log to logfile
+        FILE * pLogFile;
+        pLogFile = fopen("./attache.log","a");
+        if (pLogFile == NULL) {
+            printf("Error opening file\n");
+        }
+        fprintf(pLogFile, buffer);
+        fclose(pLogFile);
     }
 }
