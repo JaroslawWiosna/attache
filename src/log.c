@@ -1,7 +1,6 @@
 #include "log.h"
 #include <stdio.h>
 
-// TODO(#27): create function that returns the highest threshold
 struct LogThresholds logThresholds = { .console_threshold = LEVEL_ERROR, .logfile_threshold = LEVEL_DEBUG };
 
 const char * log_level_description(LOG_LEVEL level) {
