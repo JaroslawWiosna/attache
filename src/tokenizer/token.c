@@ -1,7 +1,10 @@
 #include "token.h"
+#include "../log.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+static void dctor_token(Token * token);
 
 Token * prev_token(Token * token) {
     return token->prev;
@@ -12,7 +15,7 @@ Token * next_token(Token * token) {
 }
 
 Token * create_next_token(Token * token) {
-    printf("[LOG] create_next_token\n");
+    LOGD("Enter function");
     // printf("Len of %s is %u\n", token->value, (unsigned int)strlen(token->value));
     char * text = malloc(strlen(token->the_rest_of_text) + 1);
     strncpy(text, token->the_rest_of_text, strlen(token->the_rest_of_text) + 1);
@@ -28,14 +31,14 @@ Token * create_next_token(Token * token) {
 
     Token * result = malloc(sizeof(Token));
 
-    for (int i=0; i<strlen(text); ++i) {
+    for (unsigned i=0; i<strlen(text); ++i) {
         if (' ' == *(text+i)) {
             result->value = malloc(i+1);
             strncpy(result->value, text, i+1);
             result->value[i] = '\0';
 
             result->the_rest_of_text = malloc(strlen(text) + 1 - i);
-            memcpy(result->the_rest_of_text, &text[i+1], (strlen(text) + 1 - i - 1));
+            memcpy(result->the_rest_of_text, &text[i+1], (strlen(text) + 1 - i - 1 ));
             result->the_rest_of_text[(strlen(text) - i - 1)] = '\0';
             
             result->prev = token;
@@ -72,7 +75,7 @@ Token * create_token_list(const char * text) {
 
     Token * result = malloc(sizeof(Token));
 
-    for (int i=0; i<strlen(text); ++i) {
+    for (unsigned i=0; i<strlen(text); ++i) {
         if (' ' == *(text+i)) {
             result->value = malloc(i+1);
             strncpy(result->value, text, i);
@@ -83,7 +86,7 @@ Token * create_token_list(const char * text) {
             result->the_rest_of_text[(strlen(text) - i)] = '\0';
             result->prev = NULL;
             result->next = create_next_token(result);
-            printf("[DEBUG] addr of result is %p\n", result);
+            printf("[DEBUG] addr of result is %p\n", (void *)result);
 
             return result;
         }
@@ -129,9 +132,7 @@ void dctor_token_list(Token * token) {
     return;
 }
 
-// TODO(#10): make dctor_token static, so it won't be visible outside of translation unit
-//      Only dctor_token_list should be used.
-void dctor_token(Token * token) {
+static void dctor_token(Token * token) {
     if (NULL != token->value) {
         free(token->value);
     }
