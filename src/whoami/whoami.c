@@ -1,9 +1,9 @@
 #include "whoami.h"
 #include "../log.h"
 
-void whoami(int c, char *v[]) {
+void whoami(int c, char* v[]) {
     LOGD("Entering function");
     LOGE("Not implemented! :-(");
-    (void) c;
-    (void) v;
+    (void)c;
+    (void)v;
 }

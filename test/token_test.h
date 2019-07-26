@@ -5,18 +5,18 @@
 
 // TODO(#9): make compare function return meaningful value
 // In fact this is just to test snitch tool
-void compare(char * a, char * b) {
+void compare(char* a, char* b) {
     if (0 == strcmp(a, b)) {
-        printf("[ OK ]\n"); 
+        printf("[ OK ]\n");
     } else {
-        printf("[ ERROR ] \t '%s', '%s'\n", a, b); 
+        printf("[ ERROR ] \t '%s', '%s'\n", a, b);
     }
 }
 
 int token_test_01() {
-    const char * text = "foo bar";
+    const char* text = "foo bar";
 
-    struct Token *token = create_token_list(text);
+    struct Token* token = create_token_list(text);
     compare(token->value, "foo");
     compare(token->the_rest_of_text, "bar");
 
@@ -34,9 +34,9 @@ int token_test_01() {
 }
 
 int token_test_02() {
-    const char * text = "foo bar baz";
+    const char* text = "foo bar baz";
 
-    struct Token *token = create_token_list(text);
+    struct Token* token = create_token_list(text);
     compare(token->value, "foo");
     compare(token->the_rest_of_text, "bar baz");
 
@@ -51,11 +51,12 @@ int token_test_02() {
 }
 
 int token_test_03() {
-    const char * text = "This is test string. We want to split on spaces";
+    const char* text = "This is test string. We want to split on spaces";
 
-    struct Token *token = create_token_list(text);
+    struct Token* token = create_token_list(text);
     compare(token->value, "This");
-    compare(token->the_rest_of_text, "is test string. We want to split on spaces");
+    compare(token->the_rest_of_text,
+            "is test string. We want to split on spaces");
 
     token = next_token(token);
     compare(token->value, "is");
@@ -65,4 +66,3 @@ int token_test_03() {
 
     return 0;
 }
-

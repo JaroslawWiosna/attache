@@ -14,8 +14,8 @@ typedef enum {
     COMMAND_HASH_SIZE
 } CommandHash;
 
-CommandHash getCommandHash(const char * text);
+CommandHash getCommandHash(const char* text);
 
-void parse_attache_command(int c, char *v[]);
+void parse_attache_command(int c, char* v[]);
 
 #endif // COMMAND_H

@@ -11,7 +11,7 @@ void hello_bar() {
     LOGI("bar!");
 }
 
-CommandHash getCommandHash(const char * text) {
+CommandHash getCommandHash(const char* text) {
     if (0 == strcmp(text, "hello-foo")) {
         return HELLO_FOO;
     } else if (0 == strcmp(text, "hello-bar")) {
@@ -28,15 +28,15 @@ CommandHash getCommandHash(const char * text) {
     return NO_SUCH_COMMAND;
 }
 
-void parse_attache_command(int c, char *v[]) {
+void parse_attache_command(int c, char* v[]) {
     LOGI("Enter function");
     if (c < 1) {
         LOGE("No option provided");
     } else {
         SLOGI("attache option is: '%s'", v[1]);
-        switch(getCommandHash(v[1])) {
+        switch (getCommandHash(v[1])) {
             case HELLO_FOO: {
-                LOGI("FOO FOOO FOOOOO!");                
+                LOGI("FOO FOOO FOOOOO!");
                 break;
             }
             case HELLO_BAR: {

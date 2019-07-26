@@ -21,12 +21,14 @@ struct LogThresholds {
 
 extern struct LogThresholds LogThresholds;
 
-const char * log_level_description(LOG_LEVEL level);
+const char* log_level_description(LOG_LEVEL level);
 LOG_LEVEL highestThreshold(struct LogThresholds th);
 
-#define FILENAME(filepath) (strrchr(filepath, '/') ? strrchr(filepath, '/') + 1 : filepath)
+#define FILENAME(filepath)                                                     \
+    (strrchr(filepath, '/') ? strrchr(filepath, '/') + 1 : filepath)
 
-#define LOG(level, text) my_log(level, FILENAME(__FILE__), __LINE__, __FUNCTION__, text)
+#define LOG(level, text)                                                       \
+    my_log(level, FILENAME(__FILE__), __LINE__, __FUNCTION__, text)
 #define LOGE(text) LOG(LEVEL_ERROR, text)
 #define LOGW(text) LOG(LEVEL_WARN, text)
 #define LOGI(text) LOG(LEVEL_INFO, text)
@@ -35,16 +37,18 @@ LOG_LEVEL highestThreshold(struct LogThresholds th);
 #define LOG_BUFFER_SIZE 256
 char LOG_BUFFER[LOG_BUFFER_SIZE];
 
-#define SLOG(level, text, ...) {\
-    sprintf((LOG_BUFFER), (text), ##__VA_ARGS__); \
-    LOG(level, LOG_BUFFER); \
-}
+#define SLOG(level, text, ...)                                                 \
+    {                                                                          \
+        sprintf((LOG_BUFFER), (text), ##__VA_ARGS__);                          \
+        LOG(level, LOG_BUFFER);                                                \
+    }
 
 #define SLOGW(text, ...) SLOG((LEVEL_ERROR), (text), ##__VA_ARGS__)
 #define SLOGE(text, ...) SLOG((LEVEL_WARN), (text), ##__VA_ARGS__)
 #define SLOGI(text, ...) SLOG((LEVEL_INFO), (text), ##__VA_ARGS__)
 #define SLOGD(text, ...) SLOG((LEVEL_DEBUG), (text), ##__VA_ARGS__)
 
-void my_log(LOG_LEVEL level, const char * filename, int line, const char * function, const char * text);
+void my_log(LOG_LEVEL level, const char* filename, int line,
+            const char* function, const char* text);
 
 #endif // LOG_H

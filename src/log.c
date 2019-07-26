@@ -1,10 +1,11 @@
 #include "log.h"
 #include <stdio.h>
 
-struct LogThresholds logThresholds = { .console_threshold = LEVEL_ERROR, .logfile_threshold = LEVEL_NOLOG };
+struct LogThresholds logThresholds = {.console_threshold = LEVEL_ERROR,
+                                      .logfile_threshold = LEVEL_NOLOG};
 
-const char * log_level_description(LOG_LEVEL level) {
-    switch(level) {
+const char* log_level_description(LOG_LEVEL level) {
+    switch (level) {
         case LEVEL_ERROR:
             return "[ ERROR ]";
         case LEVEL_WARN:
@@ -23,21 +24,25 @@ const char * log_level_description(LOG_LEVEL level) {
 }
 
 LOG_LEVEL highestThreshold(struct LogThresholds th) {
-    return ((th.console_threshold <= th.logfile_threshold) ? th.console_threshold : th.logfile_threshold);
+    return ((th.console_threshold <= th.logfile_threshold)
+                ? th.console_threshold
+                : th.logfile_threshold);
 }
 
-void my_log(LOG_LEVEL level, const char * filename, int line, const char * function, const char * text) {
+void my_log(LOG_LEVEL level, const char* filename, int line,
+            const char* function, const char* text) {
     if (level > highestThreshold(logThresholds)) {
         return;
     }
     char buffer[256];
-    sprintf(buffer, "%s %s:%d (%s) %s\n", log_level_description(level), filename, line, function, text);
+    sprintf(buffer, "%s %s:%d (%s) %s\n", log_level_description(level),
+            filename, line, function, text);
     if (level <= logThresholds.console_threshold) {
         printf(buffer);
     }
     if (level <= logThresholds.logfile_threshold) {
-        FILE * pLogFile;
-        pLogFile = fopen("./attache.log","a");
+        FILE* pLogFile;
+        pLogFile = fopen("./attache.log", "a");
         if (pLogFile == NULL) {
             printf("Error opening file\n");
         }
