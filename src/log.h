@@ -4,7 +4,6 @@
 #include <string.h>
 #include <stdio.h>
 
-// TODO(#16): Let's make loglevels
 typedef enum {
     LEVEL_ERROR = 0,
     LEVEL_WARN,
