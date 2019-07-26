@@ -6,7 +6,10 @@ set(CMAKE_C_FLAGS
     "${CMAKE_C_FLAGS} \
     -Wall \
     -Werror \
+    -Wextra \
+    -Wpedantic \
     -g \
+    -Wswitch-enum \
     -std=c99"
 )
 
@@ -18,6 +21,8 @@ set (SOURCES
     src/main.c
     src/tokenizer/token.c
     src/log.c
+    src/command/command.c
+    src/whoami/whoami.c
 )
 
 add_executable(${PROJECT_NAME}
@@ -32,6 +37,8 @@ set (SOURCES-TEST
     test/main.c
     src/tokenizer/token.c
     src/log.c
+    src/command/command.c
+    src/whoami/whoami.c
 )
 
 add_executable(${PROJECT_NAME}
