@@ -13,8 +13,9 @@ int startsWith(char* prefix, char* text) {
 void getHomeDir(char* buffer, char** envp) {
     while (*envp) {
         if (startsWith("HOME=", *envp)) {
-            // TODO: cut prefix
-            sprintf(buffer, *envp);
+            // TODO: Replace magic number with length of prefix
+            char *tmp = *envp + 5;
+            sprintf(buffer, tmp);
             return;
         }
         char* tmp = *envp++;

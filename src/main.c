@@ -7,6 +7,8 @@ int main(int argc, char* argv[], char** envp) {
     //     printf("%s\n", *envp++);
     // }
     char buf[100];
+    // TODO: Once envp is processed, the next call of getHomeDir would not be the same
+    //      Let's work on copy of envp
     getHomeDir(buf, envp);
     printf("HOME is %s\n", buf);
     parse_attache_command(argc, argv);
