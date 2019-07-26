@@ -1,7 +1,7 @@
 #include "log.h"
 #include <stdio.h>
 
-struct LogThresholds logThresholds = { .console_threshold = LEVEL_ERROR, .logfile_threshold = LEVEL_DEBUG };
+struct LogThresholds logThresholds = { .console_threshold = LEVEL_ERROR, .logfile_threshold = LEVEL_NOLOG };
 
 const char * log_level_description(LOG_LEVEL level) {
     switch(level) {
@@ -13,6 +13,8 @@ const char * log_level_description(LOG_LEVEL level) {
             return "[  INFO ]";
         case LEVEL_DEBUG:
             return "[ DEBUG ]";
+        case LEVEL_NOLOG:
+            return "";
         case LOG_LEVEL_SIZE:
         default:
             LOGE("Fatal error");
