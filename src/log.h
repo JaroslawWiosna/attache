@@ -9,6 +9,7 @@ typedef enum {
     LEVEL_WARN,
     LEVEL_INFO,
     LEVEL_DEBUG,
+    LEVEL_NOLOG,
 
     LOG_LEVEL_SIZE
 } LOG_LEVEL;
