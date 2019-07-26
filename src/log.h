@@ -21,6 +21,7 @@ struct LogThresholds {
 extern struct LogThresholds LogThresholds;
 
 const char * log_level_description(LOG_LEVEL level);
+LOG_LEVEL highestThreshold(struct LogThresholds th);
 
 #define FILENAME(filepath) (strrchr(filepath, '/') ? strrchr(filepath, '/') + 1 : filepath)
 
