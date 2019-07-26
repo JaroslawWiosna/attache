@@ -29,5 +29,5 @@ void my_log(LOG_LEVEL level, const char * filename, int line, const char * funct
         printf("%s %s:%d (%s) %s\n", log_level_description(level), filename, line, function, text);
     }
 
-    // TODO: append log to logfile
+    // TODO(#28): append log to logfile
 }
