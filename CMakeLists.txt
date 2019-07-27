@@ -23,6 +23,7 @@ set (SOURCES
     src/log.c
     src/command/command.c
     src/whoami/whoami.c
+    src/system/env.c
 )
 
 add_executable(${PROJECT_NAME}
@@ -39,6 +40,7 @@ set (SOURCES-TEST
     src/log.c
     src/command/command.c
     src/whoami/whoami.c
+    src/system/env.c
 )
 
 add_executable(${PROJECT_NAME}
