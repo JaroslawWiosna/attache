@@ -16,10 +16,10 @@ int startsWith(char* prefix, char* text) {
 }
 
 void setHomeDir(char** envp) {
+    char * prefix = "HOME=";
     while (*envp) {
-        if (startsWith("HOME=", *envp)) {
-            // TODO(#36): Replace magic number with length of prefix
-            char *tmp = *envp + 5;
+        if (startsWith(prefix, *envp)) {
+            char *tmp = *envp + strlen(prefix);
             int tmp_len = strlen(tmp);
             homeDirBuffer = malloc(tmp_len + 1);
             strncpy(homeDirBuffer, tmp, tmp_len);
